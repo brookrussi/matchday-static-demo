@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Matchday Phone Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 21px 36px 18px;
+  user-select: none;
+}
+#root > div {
+  flex: 0 0 auto;
+  transform: scale(var(--phone-scale, 1));
+  transform-origin: center center;
+  border-radius: 48px;
+  outline: 2px solid rgba(247, 242, 232, 0.18);
+  outline-offset: 0;
+  filter:
+    drop-shadow(0 0 0 rgba(247, 242, 232, 0.22))
+    drop-shadow(0 24px 34px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 26px rgba(247, 242, 232, 0.10));
+}
+.twk-panel {
+  display: none !important;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+function fitPhonePreview() {
+  const availableWidth = Math.max(1, window.innerWidth - 39);
+  const availableHeight = Math.max(1, window.innerHeight - 54);
+  const scale = Math.min(availableWidth / 402, availableHeight / 874, 1);
+  document.documentElement.style.setProperty("--phone-scale", scale.toFixed(4));
+}
+window.addEventListener("resize", fitPhonePreview);
+fitPhonePreview();
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="screens-onboarding.jsx"></script>
+<script type="text/babel" src="screens-app.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
